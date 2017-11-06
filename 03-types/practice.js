@@ -1,8 +1,10 @@
 // Write a function called isDivisibleBy3 which returns `true` if a number is
 // divisible by 3, and `false` otherwise.
-var isDivisibleBy3 = function () {
+var isDivisibleBy3 = function (number) {
+	var remainder;
+	remainder = number % 3;
+	return remainder === 0;
 };
-
 
 // Write a function that converts a Celsius temperature to Fahrenheit,
 // and vice-versa. To convert from Celsius to Fahrenheit, you multiply
@@ -10,10 +12,15 @@ var isDivisibleBy3 = function () {
 // convert the other way, you subtract 32, and then multiply by
 // 5. Finally, you divide by 9. The division operator in JavaScript is
 // `/`.
-var celsToFahr = function () {
+var celsToFahr = function (cels) {
+	var fahr;
+	fahr = cels * 9 / 5 + 32;
+	return fahr;
 };
 
-var fahrToCels = function () {
+var fahrToCels = function (fahr) {
+	cels = (fahr - 32) * 5 / 9;
+	return cels;
 };
 
 

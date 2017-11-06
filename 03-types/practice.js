@@ -39,6 +39,7 @@ var fahrToCels = function (fahr) {
 //     randUpTo(1000);
 //     //=> 236
 var randUpTo = function () {
+	
 };
 
 

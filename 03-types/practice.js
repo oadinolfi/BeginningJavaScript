@@ -38,14 +38,16 @@ var fahrToCels = function (fahr) {
 //
 //     randUpTo(1000);
 //     //=> 236
-var randUpTo = function () {
-	
+var randUpTo = function (number) {
+	return Math.floor ( (Math.random () * number) );
 };
 
 
 // Write a function called `randBetween` that accepts two numbers representing a
 // range and returns a random whole number between those two numbers.
-var randBetween = function () {
+var randBetween = function (start, finish) {
+	number = finish - start;
+	return Math.floor ( (Math.random () * number) + start);
 };
 
 
@@ -64,7 +66,9 @@ var randBetween = function () {
 //
 //     isSuit("coins");
 //     //=> false
-var isSuit = function () {
+var isSuit = function (potentialSuit) {
+	suit = potentialSuit.toUpperCase ();
+	return suit === "CLUBS" || suit === "DIAMONDS" || suit === "HEARTS" || suit === "SPADES";
 };
 
 
@@ -80,14 +84,19 @@ var isSuit = function () {
 //
 //     isRank("one");
 //     //=> false
-var isRank = function () {
+var isRank = function (potentialRank) {
+	rank = potentialRank.toLowerCase ();
+	return rank === "two" || rank === "three" || rank === "four" || rank === "five" || 
+	rank === "six" || rank === "seven" || rank === "eight" || rank === "nine" || rank === "ten" || 
+	rank === "jack" || rank === "queen" || rank === "king" || rank === "ace";
 };
 
 
 // Using the previous two functions, write a function called isCard that accepts
 // two arguments, a rank and a suit, and returns true if they are valid for a card,
 // and false otherwise.
-var isCard = function () {
+var isCard = function (potentialRank, potentialSuit) {
+	return isSuit (potentialSuit) && isRank (potentialRank);
 };
 
 
@@ -96,7 +105,8 @@ var isCard = function () {
 // Remember that you can use strings in comparisons in the same way that you can
 // use numbers, and the ordering is alphabetical (with capital letters having lower
 // values than their lower-case counterparts).
-var isCapitalized = function () {
+var isCapitalized = function (inputString) {
+	return "A" <= inputString.charAt (0) && inputString.charAt (0) <= "Z";
 };
 
 
@@ -109,7 +119,11 @@ var isCapitalized = function () {
 //
 //     getHTMLText("<li>this is a list item</li>");
 //     //=> this is a list item
-var getHTMLText = function () {
+var getHTMLText = function (htmlText) {
+	firstIndex = htmlText.indexOf (">");
+	lastIndex = htmlText.lastIndexOf ("<");
+	cleanString = htmlText.slice (firstIndex + 1, lastIndex);
+	return cleanString;
 };
 
 
@@ -130,5 +144,23 @@ var getHTMLText = function () {
 //
 // It may help in this case to look up the `lastIndexOf` method on the string
 // objects.
-var isHTMLElement = function () {
+var isHTMLElement = function (htmlElement) {
+	firstIndex = htmlElement.indexOf ("<");
+	lastIndex = htmlElement.indexOf (">");
+	initialTag = htmlElement.slice (firstIndex, lastIndex + 1);
+	initialTagSlice = initialTag.slice (1);
+	endTag = "</" + initialTagSlice;
+	endTagFirstIndex = htmlElement.lastIndexOf (endTag);
+	return 	endTagFirstIndex != -1 &&
+			endTag === "</" + initialTagSlice &&
+			firstIndex === 0 &&
+			endTagFirstIndex + endTag.length === htmlElement.length;
+};
+
+// model answer
+var isHTMLElement1 = function (str) {
+    var openTag = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+    var closeTag = str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+    return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && openTag === closeTag;
+
 };
